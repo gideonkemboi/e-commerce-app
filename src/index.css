@@ -24,10 +24,10 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  font-family: Roboto, sans-serif;
 }
 
 h1 {
@@ -65,4 +65,73 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f2937;
+}
+
+.header .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 12%;
+}
+
+.logo {
+  font-size: 24px;
+  color: #f9faf8;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  gap: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #e5e7eb;
+}
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.item {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+    padding: 10px;
+  overflow: hidden; /* Prevents text overflow */
+  text-overflow: ellipsis; /* Truncates long text with ellipsis */
+  white-space: nowrap;
+}
+
+.item > img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rating {
+  display: flex;
+  gap: 20px;
+}
+
+.productDetail {
+  display: flex;
+  gap: 20px;
 }

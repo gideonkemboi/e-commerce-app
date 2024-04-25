@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
 
 function Item({ id, image, name, rate, count, price }) {
   return (
@@ -27,7 +26,6 @@ function Shop() {
 
   return (
     <div className="shop">
-      <Header />
       <div className="products">
         {products.map((product) => (
           <Item

@@ -1,9 +1,9 @@
-import Header from "./Header";
+import { useOutletContext } from "react-router-dom";
 
 function Home() {
   return (
     <>
-      <Header />
+      <div>Home</div>
     </>
   );
 }

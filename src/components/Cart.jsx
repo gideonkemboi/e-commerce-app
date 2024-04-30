@@ -1,20 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }) {
   function closeModal() {
     setIsOpen(false);
   }
-
-  // function handleDecreaseItems(id) {
-  //   setCartProducts((prevCartProducts) => {
-  //     return prevCartProducts.map((prod) => {
-  //       if (id === prod.id) {
-  //         return { ...prod, quantity: prod.quantity - 1 };
-  //       }
-  //       return prod;
-  //     });
-  //   });
-  // }
 
   function handleDecreaseItems(id) {
     setCartProducts((prevCartProducts) => {
@@ -49,17 +38,15 @@ function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }) {
     });
   }
 
-  let totalPrice = 0;
-  function getTotalPrice() {
-    if (cartProducts.length > 0) {
-      cartProducts.map(
-        (product) => (totalPrice += product.price * product.quantity)
-      );
-      return totalPrice.toFixed(2);
-    }
-  }
-
-  getTotalPrice();
+  const totalPrice = useMemo(() => {
+    return Number(
+      cartProducts.reduce(
+        (total, product) =>
+          total + product.price * product.quantity,
+        0
+      )
+    ).toFixed(2);
+  }, [cartProducts]);
 
   return (
     <>

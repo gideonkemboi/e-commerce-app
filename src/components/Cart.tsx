@@ -1,11 +1,20 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
+import { CartProduct } from "./types";
 
-function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }) {
+
+interface CartProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  cartProducts: CartProduct[];
+  setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>;
+}
+
+function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }: CartProps) {
   function closeModal() {
     setIsOpen(false);
   }
 
-  function handleDecreaseItems(id) {
+  function handleDecreaseItems(id: number) {
     setCartProducts((prevCartProducts) => {
       return prevCartProducts
         .map((prod) => {
@@ -15,7 +24,7 @@ function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }) {
 
             if (updatedQuantity <= 0) {
               // If quantity becomes zero or less, remove the product from the cart
-              return null; // Filter it out
+              return null;
             } else {
               // Otherwise, update the quantity
               return { ...prod, quantity: updatedQuantity };
@@ -23,11 +32,11 @@ function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }) {
           }
           return prod;
         })
-        .filter(Boolean); // Remove null entries (products with zero quantity)
+        .filter((prod): prod is CartProduct => prod !== null); // Type guard to remove null entries
     });
   }
 
-  function handleIncreaseItems(id) {
+  function handleIncreaseItems(id: number) {
     setCartProducts((prevCartProducts) => {
       return prevCartProducts.map((prod) => {
         if (id === prod.id) {
@@ -41,8 +50,7 @@ function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }) {
   const totalPrice = useMemo(() => {
     return Number(
       cartProducts.reduce(
-        (total, product) =>
-          total + product.price * product.quantity,
+        (total, product) => total + product.price * product.quantity,
         0
       )
     ).toFixed(2);

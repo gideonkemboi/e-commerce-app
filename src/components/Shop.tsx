@@ -1,22 +1,27 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Product } from "./types";
 
-function Item({ id, image, name, rate, count, price }) {
+interface ItemProps {
+  product: Product;
+}
+
+function Item({ product }: ItemProps) {
   return (
-    <Link to={`/product/${id}`} className="item">
-      <img src={image} alt={name} />
-      <div>{name}</div>
+    <Link to={`/product/${product.id}`} className="item">
+      <img src={product.image} alt={product.title} />
+      <div>{product.title}</div>
       <div className="rating">
-        <div>Rating: {rate}</div>
-        <div>({count})</div>
+        <div>Rating: {product.rating.rate}</div>
+        <div>({product.rating.count})</div>
       </div>
-      <div>Price: {price}</div>
+      <div>Price: {product.price}</div>
     </Link>
   );
 }
 
 function Shop() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -24,19 +29,15 @@ function Shop() {
       .then((json) => setProducts(json));
   });
 
+  if (!products) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="shop">
       <div className="products">
         {products.map((product) => (
-          <Item
-            key={product.id}
-            id={product.id}
-            image={product.image}
-            name={product.title}
-            rate={product.rating.rate}
-            count={product.rating.count}
-            price={product.price}
-          />
+          <Item product={product} />
         ))}
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Input({ placeholder }) {
+function Input({ placeholder }: { placeholder: string }) {
   const [value, setValue] = useState("");
 
   return (

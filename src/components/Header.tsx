@@ -1,9 +1,21 @@
 import Input from "./Input";
 import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
+import { CartProduct } from "./types";
 
-function Header({isOpen, setIsOpen, cartProducts, setCartProducts}) {
+interface HeaderProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  cartProducts: CartProduct[];
+  setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>;
+}
 
+function Header({
+  isOpen,
+  setIsOpen,
+  cartProducts,
+  setCartProducts,
+}: HeaderProps) {
   return (
     <>
       <div className="header">
@@ -30,7 +42,12 @@ function Header({isOpen, setIsOpen, cartProducts, setCartProducts}) {
           </ul>
         </div>
       </div>
-      <Cart isOpen={isOpen} setIsOpen={setIsOpen} cartProducts={cartProducts} setCartProducts={setCartProducts} />
+      <Cart
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        cartProducts={cartProducts}
+        setCartProducts={setCartProducts}
+      />
     </>
   );
 }

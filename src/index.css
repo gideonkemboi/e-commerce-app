@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -114,7 +116,7 @@ a {
   height: 300px;
   display: flex;
   flex-direction: column;
-    padding: 10px;
+  padding: 10px;
   overflow: hidden; /* Prevents text overflow */
   text-overflow: ellipsis; /* Truncates long text with ellipsis */
   white-space: nowrap;

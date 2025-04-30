@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { CartProduct } from "./types";
 
-
 interface CartProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -51,31 +50,46 @@ function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }: CartProps) {
     return Number(
       cartProducts.reduce(
         (total, product) => total + product.price * product.quantity,
-        0
-      )
+        0,
+      ),
     ).toFixed(2);
   }, [cartProducts]);
 
   return (
     <>
-      <div id="modal" className={isOpen ? "modal opened" : "modal closed"}>
-        <div className="modal-content">
-          <span className="close" onClick={closeModal}>
+      <div
+        className={`bg-opacity-50 fixed top-0 right-0 h-full w-1/2 bg-black transition-transform duration-300 shadow-2xl ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="h-full bg-white p-5 text-black">
+          <span
+            className="absolute top-2.5 right-2.5 h-5 w-5 cursor-pointer"
+            onClick={closeModal}
+          >
             &times;
           </span>
-          <div className="cart">
+          <div className="grid h-full grid-flow-row">
             <div>
               {cartProducts.length > 0 ? (
                 cartProducts.map((product) => (
                   <div key={product.id}>
                     <div>{product.title}</div>
                     <div>{product.price * product.quantity}</div>
-                    <div className="quantity">
-                      <button onClick={() => handleDecreaseItems(product.id)}>
+                    <div className="flex items-center">
+                      <button
+                        className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-1 py-2 font-bold text-white"
+                        onClick={() => handleDecreaseItems(product.id)}
+                      >
                         -
                       </button>
-                      <div>{product.quantity}</div>
-                      <button onClick={() => handleIncreaseItems(product.id)}>
+                      <div className="m-5 text-lg font-medium">
+                        {product.quantity}
+                      </div>
+                      <button
+                        className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-900 px-1 py-2 font-bold text-white"
+                        onClick={() => handleIncreaseItems(product.id)}
+                      >
                         +
                       </button>
                     </div>
@@ -86,12 +100,14 @@ function Cart({ isOpen, setIsOpen, cartProducts, setCartProducts }: CartProps) {
               )}
             </div>
             {cartProducts.length > 0 ? (
-              <div className="checkOut">
-                <div className="totalPrice">
-                  <div>Total:</div>
-                  <div>{totalPrice}</div>
+              <div className="mt-auto flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="text-xl font-medium">Total:</div>
+                  <div className="text-xl">{totalPrice}</div>
                 </div>
-                <button className="checkOutBtn">Check Out</button>
+                <button className="w-1/3 cursor-pointer self-end rounded-lg bg-gray-900 px-1 py-2 text-white">
+                  Check Out
+                </button>
               </div>
             ) : null}
           </div>

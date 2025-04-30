@@ -8,10 +8,17 @@ interface ItemProps {
 
 function Item({ product }: ItemProps) {
   return (
-    <Link to={`/product/${product.id}`} className="item">
-      <img src={product.image} alt={product.title} />
+    <Link
+      to={`/product/${product.id}`}
+      className="flex h-75 w-50 flex-col overflow-hidden p-2.5 text-ellipsis whitespace-nowrap"
+    >
+      <img
+        src={product.image}
+        alt={product.title}
+        className="block h-auto w-full"
+      />
       <div>{product.title}</div>
-      <div className="rating">
+      <div className="flex gap-5">
         <div>Rating: {product.rating.rate}</div>
         <div>({product.rating.count})</div>
       </div>
@@ -34,8 +41,8 @@ function Shop() {
   }
 
   return (
-    <div className="shop">
-      <div className="products">
+    <div className="flex flex-col gap-5">
+      <div className="grid grid-cols-4 gap-5">
         {products.map((product) => (
           <Item product={product} />
         ))}

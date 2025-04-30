@@ -18,10 +18,10 @@ function Header({
 }: HeaderProps) {
   return (
     <>
-      <div className="header">
-        <div className="top">
-          <div className="logo">FakeStore</div>
-          <ul>
+      <div className="flex flex-col bg-blue-950 text-white">
+        <div className="m-5 flex items-center justify-between">
+          <div className="text-2xl text-white">FakeStore</div>
+          <ul className="flex list-none items-center gap-4.5">
             <li className="search">
               <Input placeholder="Search for products" />
             </li>
@@ -37,7 +37,9 @@ function Header({
               </NavLink>
             </li>
             <li>
-              <a onClick={() => setIsOpen(true)}>Cart</a>
+              <a className="text-lg text-white" onClick={() => setIsOpen(true)}>
+                Cart
+              </a>
             </li>
           </ul>
         </div>

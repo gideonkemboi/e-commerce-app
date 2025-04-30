@@ -14,3 +14,10 @@ export interface Product {
 export interface CartProduct extends Product {
   quantity: number;
 }
+
+export interface AppContext {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  cartProducts: CartProduct[];
+  setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>;
+}

@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-function Input({ placeholder }: { placeholder: string }) {
+interface InputProps {
+  placeholder: string;
+  className?: string;
+}
+
+function Input({ placeholder, className }: InputProps) {
   const [value, setValue] = useState("");
 
   return (
@@ -9,6 +14,7 @@ function Input({ placeholder }: { placeholder: string }) {
       placeholder={placeholder}
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      className={`rounded border px-2 py-1 placeholder-gray-500${className}`}
     />
   );
 }

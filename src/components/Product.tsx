@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Cart from "./Cart";
-import { useAppContext } from "./App";
+import { useAppContext } from "./context";
 import type { Product } from "./types";
 
 function Product() {
@@ -26,7 +26,7 @@ function Product() {
       setCartProducts([{ ...product, quantity: 1 }]);
     } else {
       const productIndexInCart = cartProducts.findIndex(
-        (prod) => prod.id === product.id
+        (prod) => prod.id === product.id,
       );
 
       if (productIndexInCart !== -1) {
@@ -45,12 +45,12 @@ function Product() {
   }
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center">Loading...</div>;
   }
 
   return (
     <div>
-      <div className="productDetail">
+      <div className="flex gap-5">
         <div>
           <img src={product.image} alt={product.title} />
         </div>
@@ -67,6 +67,7 @@ function Product() {
           <div>Price: {product.price}</div>
           <div>{product.description}</div>
           <button
+            className="cursor-pointer rounded-lg bg-gray-900 px-1 py-2 text-white"
             onClick={() => {
               openModal();
               handleAddToCart(product);

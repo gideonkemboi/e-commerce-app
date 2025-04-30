@@ -1,14 +1,8 @@
 import { useState } from "react";
-import { Outlet, useOutletContext } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import { CartProduct } from "./types";
-
-interface AppContext {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  cartProducts: CartProduct[];
-  setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>;
-}
+import { AppContext } from "./types";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,10 +28,6 @@ function App() {
       />
     </>
   );
-}
-
-export function useAppContext() {
-  return useOutletContext<AppContext>();
 }
 
 export default App;

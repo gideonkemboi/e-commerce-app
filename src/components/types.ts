@@ -16,8 +16,6 @@ export interface CartProduct extends Product {
 }
 
 export interface AppContext {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   cartProducts: CartProduct[];
   setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>;
 }

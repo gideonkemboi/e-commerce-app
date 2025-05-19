@@ -36,7 +36,7 @@ function Home() {
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-4">
           <Link
             to="/shop"
-            state={{ category: "electronics" }}
+            state={{ category: "Electronics" }}
             className="group relative flex h-64 items-center justify-center overflow-hidden rounded-lg bg-gray-200 shadow-lg"
           >
             <img
@@ -66,7 +66,7 @@ function Home() {
           </Link>
           <Link
             to="/shop"
-            state={{ category: "women's clothing" }}
+            state={{ category: "Women's clothing" }}
             className="group relative flex h-64 items-center justify-center overflow-hidden rounded-lg bg-gray-200 shadow-lg"
           >
             <img
@@ -81,7 +81,7 @@ function Home() {
           </Link>
           <Link
             to="/shop"
-            state={{ category: "jewellery" }}
+            state={{ category: "Jewellery" }}
             className="group relative flex h-64 items-center justify-center overflow-hidden rounded-lg bg-gray-200 shadow-lg"
           >
             <img

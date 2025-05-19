@@ -58,7 +58,7 @@ export default function Item({
               e.stopPropagation();
               handleAddToCart(product);
             }}
-            className="z-10 h-5 w-5 cursor-pointer focus:outline-none"
+            className="h-5 w-5 cursor-pointer focus:outline-none"
           >
             <img src={CartIcon} alt="Add to cart" className="h-full w-full" />
           </button>

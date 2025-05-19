@@ -9,18 +9,22 @@ import { useAppContext } from "../context";
 
 function Shop() {
   const location = useLocation();
-  const [category, setCategory] = useState(location.state?.category || "All");
+  const [category, setCategory] = useState<string>(
+    location.state?.category || "All",
+  );
   const [products, setProducts] = useState<Product[] | null>(null);
   const { cartProducts, setCartProducts } = useAppContext();
 
   const urlFor = (category: string) => {
     if (category === "All") return "https://fakestoreapi.com/products";
 
-    const path = category
-      .toLowerCase()
-      .replace("men's clothing", "men's%20clothing")
-      .replace("women's clothing", "women's%20clothing")
-      .replace("jewellery", "jewelery");
+    const categoryMap: Record<string, string> = {
+      "men's clothing": "men's%20clothing",
+      "women's clothing": "women's%20clothing",
+      jewellery: "jewelery",
+    };
+
+    const path = categoryMap[category.toLowerCase()] || category.toLowerCase();
     return `https://fakestoreapi.com/products/category/${path}`;
   };
 
